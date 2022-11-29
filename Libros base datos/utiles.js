@@ -1,16 +1,16 @@
 $(document).ready(function () {
     let orden = 'id';
-    let dir = 'DESC';
+    let dir = 'ASC';
     muestralibros(orden);
     
     $('#tabla').on('click','th:not("#acciones")', function() {
         elemento = $(this).text();
         muestralibros(elemento);
 
-        if(dir == 'DESC'){
-            dir = 'ASC';
-        }else if(dir == 'ASC'){
+        if(dir == 'ASC'){
             dir = 'DESC';
+        }else if(dir == 'DESC'){
+            dir = 'ASC';
         }
     });
 
