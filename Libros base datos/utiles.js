@@ -2,21 +2,21 @@ $(document).ready(function () {
     let orden = 'id';
     let dir = 'ASC';
     muestralibros(orden);
-    
-    $('#tabla').on('click','th:not("#acciones")', function() {
+
+    $('#tabla').on('click', 'th:not("#acciones")', function () {
         elemento = $(this).text();
         muestralibros(elemento);
 
-        if(dir == 'ASC'){
+        if (dir == 'ASC') {
             dir = 'DESC';
-        }else if(dir == 'DESC'){
+        } else if (dir == 'DESC') {
             dir = 'ASC';
         }
     });
 
-    function muestralibros(orden){
+    function muestralibros(orden) {
         $.ajax({
-            url: 'damelibros.php?orden='+orden+'&dir='+dir,
+            url: 'damelibros.php?orden=' + orden + '&dir=' + dir,
             type: 'GET',
             dataType: 'json',
             success: function (datos) {
@@ -80,13 +80,13 @@ $(document).ready(function () {
         $('#paginas').val(paginas);
         console.log(id);
         //let fila = $(this).parent().parent();
-        $('#aceptar').css('display','');
+        $('#aceptar').css('display', '');
     });
 
     $('#aceptar').on('click', function () {
         console.log('hola');
-        $('#aceptar').css('display','none');
-        
+        $('#aceptar').css('display', 'none');
+
         $.ajax({
             url: 'modificalibro.php?id=' + id,
             type: 'POST',
@@ -99,6 +99,11 @@ $(document).ready(function () {
                 paginas: $('#paginas').val()
             },
             success: function (datos) {
+                $('#titulo').val('');
+                $('#autor').val('');
+                $('#editorial').val('');
+                $('#anno').val('');
+                $('#paginas').val('');
                 muestralibros(orden);
             },
             error: function (xhr, status) {
@@ -131,7 +136,7 @@ $(document).ready(function () {
     });
 
     // $('#bt-cargar').click(function () {
-        
-        
+
+
     // });
 });
