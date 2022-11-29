@@ -57,8 +57,6 @@ $(document).ready(function () {
                 paginas: $('#paginas').val()
             },
             success: function (datos) {
-                fila = '';
-                $('#tablalibros').append(fila);
                 muestralibros(orden);
             },
             error: function (xhr, status) {
