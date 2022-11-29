@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('#titulo').val('');
+    $('#autor').val('');
+    $('#editorial').val('');
+    $('#anno').val('');
+    $('#paginas').val('');
     let orden = 'id';
     let dir = 'ASC';
     muestralibros(orden);
@@ -54,6 +59,7 @@ $(document).ready(function () {
             success: function (datos) {
                 fila = '';
                 $('#tablalibros').append(fila);
+                muestralibros(orden);
             },
             error: function (xhr, status) {
                 alert('Disculpe, existió un problema');
@@ -64,7 +70,9 @@ $(document).ready(function () {
         });
 
     });
+
     let id = '';
+
     $('#tabla').on('click', '.modificar', function () {
         id = $(this).parent().siblings().eq(0).html();
         let titulo = $(this).parent().siblings().eq(1).html();
