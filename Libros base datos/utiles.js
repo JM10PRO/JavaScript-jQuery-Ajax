@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    $('#titulo').val('');
-    $('#autor').val('');
-    $('#editorial').val('');
-    $('#anno').val('');
-    $('#paginas').val('');
+    // $('#titulo').val('');
+    // $('#autor').val('');
+    // $('#editorial').val('');
+    // $('#anno').val('');
+    // $('#paginas').val('');
     let orden = 'id';
     let dir = 'ASC';
-    muestralibros(orden);
+    muestralibros(orden,dir);
 
     $('#tabla').on('click', 'th:not("#acciones")', function () {
         elemento = $(this).text();
@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
     });
 
-    function muestralibros(orden) {
+    function muestralibros(orden,dir) {
         $.ajax({
             url: 'damelibros.php?orden=' + orden + '&dir=' + dir,
             type: 'GET',
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 $('#tabla').html(libros);
             },
             error: function (xhr, status) {
-                alert('Disculpe, existió un problema');
+                alert('Disculpe, existió un ERROR');
             },
             complete: function (xhr, status) {
                 // alert('Petición realizada');
@@ -57,7 +57,7 @@ $(document).ready(function () {
                 paginas: $('#paginas').val()
             },
             success: function (datos) {
-                muestralibros(orden);
+                muestralibros(orden,dir);
             },
             error: function (xhr, status) {
                 alert('Disculpe, existió un problema');
@@ -110,7 +110,7 @@ $(document).ready(function () {
                 $('#editorial').val('');
                 $('#anno').val('');
                 $('#paginas').val('');
-                muestralibros(orden);
+                muestralibros(orden,dir);
             },
             error: function (xhr, status) {
                 alert('Disculpe, existió un problema');
